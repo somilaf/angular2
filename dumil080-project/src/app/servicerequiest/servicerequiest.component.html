@@ -1,0 +1,213 @@
+<dp-dumilsearch (onSearchResulat)="getServiceRequiest($event)" [SearchCriteria]="searchCriteria"></dp-dumilsearch>
+
+<div id="DumilServiceRequiest" class="dumilcomponent justify-content-md-center" >
+
+  <div class="row">
+    <div class="col-md-10">
+      <div class="box-content">
+
+        <div class="animation"></div>
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>Servisni Obrazac</h4>
+          </div>
+          <div class="col-lg-6">
+            <span class="pull-right"></span>
+          </div>
+        </div>
+
+        <form action="" [formGroup]="serviceRequiestForm" name="servisniObrazac" method="post">
+
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <!--<div class="form-check form-check-inline" *ngFor="let option of optionsList.criterias">
+                <label class="form-check-label">
+                   <input class="form-check-input" type="radio" formControlName="searchoptions" [value]="option.criteriavalue"> {{option.criteriadesciption}}
+                 </label>
+              </div>-->
+            </div>
+            <div class="col-md-4 form-group " [ngClass]="{'has-warning':formErrors.customerFirstName.errors,'has-success':formErrors.customerFirstName.valid}"
+              formGroupName="customerFirstNameGroup">
+              <label class="form-control-label" for="customerFirstName">Ime:</label>
+              <!--Enter Customer Name-->
+              <div class="input-group">
+                <span class="input-group-addon"><input type="checkbox"  formControlName="chxCustomerFirstName"></span>
+                <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.customerFirstName.errors,'form-control-success':formErrors.customerFirstName.valid}"
+                  formControlName="customerFirstName" id="customerFirstName" >
+              </div>
+              <small class="form-control-feedback center" *ngIf="formErrors.customerFirstName.errors">
+             {{formErrors.customerFirstName.errors[0]}}
+            </small>
+              <!---->
+          </div>
+
+          <div class="col-md-4 form-group " [ngClass]="{'has-warning':formErrors.customerLastName.errors,'has-success':formErrors.customerLastName.valid}"
+            formGroupName="customerLastNameGroup">
+            <label class="form-control-label" for="customerLastName">Prezime:</label>
+            <!--Enter Customer Last Name-->
+            <div class="input-group">
+              <span class="input-group-addon"><input type="checkbox"  formControlName="chxCustomerLastName"></span>
+              <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.customerLastName.errors,'form-control-success':formErrors.customerLastName.valid}"
+                formControlName="customerLastName">
+            </div>
+            <small class="form-control-feedback center" *ngIf="formErrors.customerLastName.errors">
+              {{formErrors.customerLastName.errors[0]}}
+            </small>
+            <!---->
+      </div>
+      <div class="col-md-4 form-group " [ngClass]="{'has-warning':formErrors.customerPhoneNumber.errors,'has-success':formErrors.customerPhoneNumber.valid}"
+        formGroupName="customerPhoneNumberGroup">
+        <label class="form-control-label" for="customerPhoneNumber">Broj telefona:</label>
+        <!--Enter Customer Phone-->
+        <div class="input-group">
+          <span class="input-group-addon"><input type="checkbox" formControlName="chxCustomerPhoneNumber"></span>
+          <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.customerPhoneNumber.errors,'form-control-success':formErrors.customerPhoneNumber.valid}"
+            formControlName="customerPhoneNumber">
+        </div>
+        <small class="form-control-feedback center" *ngIf="formErrors.customerPhoneNumber.errors">
+              {{formErrors.customerPhoneNumber.errors[0]}}
+            </small>
+        <!---->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 form-group" [ngClass]="{'has-warning':formErrors.serviceCategorie.errors,'has-success':formErrors.serviceCategorie.valid}">
+      <label class="form-control-label" for="serviceCategorie">Vrsta usluge:</label>
+      <!--Select Category Of Services-->
+      <div class="input-group">
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger" #selectedCategory>Izaberi</button>
+          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" *ngFor="let item of serviceCategoris;" (click)="selectCategory(item,selectedCategory,selectedService)">{{item.categoryDescription}}</a>
+            </div>
+        </div>
+      </div>
+      <small class="form-control-feedback center" *ngIf="formErrors.serviceCategorie.errors">
+              {{formErrors.serviceCategorie.errors[0]}}
+            </small>
+      <!---->
+    </div>
+
+    <div class="col-lg-3 form-group" [ngClass]="{'has-warning':formErrors.deviceBrand.errors,'has-success':formErrors.deviceBrand.valid}">
+      <label class="form-control-label" for="deviceBrand">Vrsta uređaja i proizvođač:</label>
+      <!--Select Services-->
+      <div class="input-group">
+        <div class="input-group-btn" disabled>
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            disabled #selectedService>
+            Izaberi
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" *ngFor="let item of categoryServices;">{{item.categoryDescription}}</a>
+            </div>
+        </div>
+        <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceBrand.errors,'form-control-success':formErrors.deviceBrand.valid}"
+          formControlName="deviceBrand">
+      </div>
+      <small class="form-control-feedback center" *ngIf="formErrors.deviceBrand.errors">
+              {{formErrors.deviceBrand.errors[0]}}
+            </small>
+      <!---->
+    </div>
+
+    <div class="col-lg-3 form-group" [ngClass]="{'has-warning':formErrors.deviceModel.errors,'has-success':formErrors.deviceModel.valid}">
+      <!--Specify Device Model-->
+      <label class="form-control-label" for="deviceModel">Model:</label>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceModel.errors,'form-control-success':formErrors.deviceModel.valid}"
+          formControlName="deviceModel">
+      </div>
+      <small class="form-control-feedback center" *ngIf="formErrors.deviceModel.errors">
+              {{formErrors.deviceModel.errors[0]}}
+            </small>
+      <!---->
+    </div>
+
+    <div class="col-lg-3 form-group" [ngClass]="{'has-warning':formErrors.deviceSerialNumber.errors,'has-success':formErrors.deviceSerialNumber.valid}"
+      formGroupName="deviceSerialNumberGroup">
+      <!--Specify Device Serial Number-->
+      <label class="form-control-label" for="deviceSerialNumber">Serijski broj:</label>
+      <div class="input-group">
+        <span class="input-group-addon"><input type="checkbox" formControlName="chxDeviceSerialNumber"></span>
+        <input type="text" class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceSerialNumber.errors,'form-control-success':formErrors.deviceSerialNumber.valid}"
+          formControlName="deviceSerialNumber">
+      </div>
+      <small class="form-control-feedback center" *ngIf="formErrors.deviceSerialNumber.errors">
+              {{formErrors.deviceSerialNumber.errors[0]}}
+            </small>
+      <!---->
+  </div>
+</div> <br>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <!-- Device Condition Info-->
+    <div class="form-group" [ngClass]="{'has-warning':formErrors.deviceInfo.errors,'has-success':formErrors.deviceInfo.valid}">
+      <label class="form-control-label" for="deviceInfo">Opšte informacije o uredjaju (fizička oštećenja - raniji servisi):</label>
+      <textarea class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceInfo.errors,'form-control-success':formErrors.deviceInfo.valid}"
+        rows="3" formControlName="deviceInfo"></textarea>
+        <small class="form-control-feedback center" *ngIf="formErrors.deviceInfo.errors">
+                {{formErrors.deviceInfo.errors[0]}}
+              </small>
+    </div>
+
+    <!---->
+  </div>
+  <div class="col-sm-6">
+    <!-- Device Extra Parts-->
+    <div class="form-group" [ngClass]="{'has-warning':formErrors.deviceParts.errors,'has-success':formErrors.deviceParts.valid}">
+      <label class="form-control-label" for="deviceParts">Prateca oprema i komponente:</label>
+      <textarea class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceParts.errors,'form-control-success':formErrors.deviceParts.valid}"
+        rows="3" formControlName="deviceParts"></textarea>
+        <small class="form-control-feedback center" *ngIf="formErrors.deviceParts.errors">
+                {{formErrors.deviceParts.errors[0]}}
+              </small>
+    </div>
+    <!---->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Device Problem Description-->
+    <div class="form-group" [ngClass]="{'has-warning':formErrors.deviceProblemDescription.errors,'has-success':formErrors.deviceProblemDescription.valid}">
+      <label class="form-control-label" for="deviceProblemDescription">Opis kvara:</label>
+      <textarea class="form-control" [ngClass]="{'form-control-warning':formErrors.deviceProblemDescription.errors,'form-control-success':formErrors.deviceProblemDescription.valid}"
+        rows="5" formControlName="deviceProblemDescription"></textarea>
+        <small class="form-control-feedback center" *ngIf="formErrors.deviceProblemDescription.errors">
+                {{formErrors.deviceProblemDescription.errors[0]}}
+              </small>
+    </div>
+    <!---->
+  </div>
+</div><br>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group" [ngClass]="{'has-warning':formErrors.iAgree.errors,'has-success':formErrors.iAgree.valid}">
+      <input type="checkbox" formControlName="iAgree">
+      <label class="form-control-label" for="iAgree">Svi uneti podaci su verodostojni.</label>
+      <small class="form-control-feedback center" *ngIf="formErrors.iAgree.errors">
+                {{formErrors.iAgree.errors[0]}}
+              </small>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <input type="submit" value="Pošalji zahtev" (click)="onSendServiceRequiest()">
+  </div>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#serviceRequiestReport">
+  Launch demo modal
+</button>
+<dp-servicerequiestreport></dp-servicerequiestreport>
+</div>

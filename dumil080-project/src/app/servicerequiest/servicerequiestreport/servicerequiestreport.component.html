@@ -1,0 +1,116 @@
+<!-- Modal -->
+<div class="modal fade" id="serviceRequiestReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xs">
+
+    <div class="modal-content a4print">
+      <div class="modal-header">
+
+        <div class="col-6">
+          <div class="row">
+            <img src="/assets/images/glavnilogo.png" alt="Company Logo" style="width: 200px;height: 100px;">
+</div>
+<div class="row">
+  <ul class="list-group col-12">
+    <li class="list-group-item active">Podaci o korisniku usluge:</li>
+    <li class="list-group-item">{{serviceRequiest?.firstname}}</li>
+    <li class="list-group-item">{{serviceRequiest?.phonenumber}}</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="col-6">
+  <ul class="list-group">
+    <li class="list-group-item active">Radnja za popravku računara i periferne opereme i trgovinu Dumil08</li>
+    <li class="list-group-item">Jakova Obrenovića 11</li>
+    <li class="list-group-item">32300 Gornji Milanovac</li>
+    <li class="list-group-item">www.dumil08.com</li>
+    <li class="list-group-item">dumil08@gmail.com</li>
+  </ul>
+</div>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Broj servisnog naloga: {{serviceRequiest?.servicerequiestid}}</strong>
+        </li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Datum aplikacije zahteva: {{serviceRequiest?.servicerequiestdate}}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group info">
+        <li class="list-group-item active"> Vrsta Usluge:</li>
+        <li class="list-group-item">{{serviceRequiest?.servicerequiestdate}}</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <ul class="list-group info">
+        <li class="list-group-item active"> Vrsta Uredjaja i proizvodjac:</li>
+        <li class="list-group-item">{{serviceRequiest?.devicename}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group info">
+        <li class="list-group-item active"> Model:</li>
+        <li class="list-group-item">{{serviceRequiest?.devicemodel}}</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <ul class="list-group info">
+        <li class="list-group-item active"> Serijski broj::</li>
+        <li class="list-group-item">{{serviceRequiest?.deviceserialnumber}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h5>Opšte informacije o uređaju (fizička oštećenja - raniji servisi):</h5>
+      <p>{{serviceRequiest?.deviceinfo}}</p>
+    </div>
+    <div class="col-12">
+      <h5>Prateća oprema i komponente:</h5>
+      <p>{{serviceRequiest?.extraparts}}</p>
+    </div>
+    <div class="col-12">
+      <h5>Opis kvara:</h5>
+      <p>{{serviceRequiest?.problemdescription}}</p>
+    </div>
+  </div>
+  <div class="row" id="reportSignitures">
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item active">Potpis podnosioca servisnog zahteva:</li>
+        <li class="list-group-item"></li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item active">Potpis podnosioca servisnog zahteva:</li>
+        <li class="list-group-item"></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary">Izveštaj</button>
+   <button type="button" class="btn btn-primary">Predračun</button>
+    <button type="button" class="btn btn-primary">Račun</button>
+     <button type="button" class="btn btn-primary">Štampaj</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
